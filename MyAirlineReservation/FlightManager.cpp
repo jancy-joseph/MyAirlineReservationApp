@@ -4,6 +4,14 @@
 #include<iomanip> //setw function
 #include "FlightManager.h"
 #include "Helper.h"
+#include <list>
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+
+#define _CRT_SECURE_NO_WARNINGS 1 
+#define _WINSOCK_DEPRECATED_NO_WARNINGS 1 
+
 using namespace std;
 
 
@@ -14,9 +22,21 @@ namespace MyAirlineReservationApp {
 		cout << "Constructor for FlightManager is invoked" << endl;
 	}*/
 	
+
 	bool FlightManager::ValidateIfFlightExists(int FlightNumber) {
 		for (auto& Flight : mFlights) {
 			if (Flight.getFlightNo() == FlightNumber) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool FlightManager::ValidateIfPassengerExists(int passportNo)
+	{
+		for (auto& thePassenger : mPassengers) {
+			if (thePassenger.getmPassportNo() == passportNo)
+			{
 				return true;
 			}
 		}
@@ -29,14 +49,22 @@ namespace MyAirlineReservationApp {
 		cout << "Enter the Total No of seats: " << endl;
 		int totalNoOfSeats = Helper::getIntegerInput();
 		theFlight.setTotalNoofSeats(totalNoOfSeats);
-		cout << "Enter the No of Seats Available for booking: " << endl; 
+loop:	cout << "Enter the No of Seats Available for booking: " << endl; 
 		int ReservableSeats = Helper::getIntegerInput();
+		if (ReservableSeats >= totalNoOfSeats) {
+			cout << "Reservable seats cant be more than or equal to total no of seats.Check your data! " << endl;
+			goto loop;
+		}
 		theFlight.setNoOfReservableSeatsAvailable(ReservableSeats);
-		cout << "Enter the No of Seats Available for booking: " << endl;
+		cout << "Enter The Departing Time:" << endl;
 		/* --DEPARTURE TIME-- */
-		//cout << "Departing time (e.g. 19:40): "; //ask from user for the boarding time
-		//Time departingTime = Helper::getTime();
-		//theFlight.setDepartingTime(departingTime);
+		cout << "Departing time (e.g. 19:40): "; //ask from user for the boarding time
+		string departingTime = Helper::getTime();
+		theFlight.setDepartingTime(departingTime);
+		/* --ARRIVAL TIME-- */
+		cout << "Arrival time (e.g. 19:40): "; //ask from user for the boarding time
+		string arrivalTime = Helper::getTime();
+		theFlight.SetArrivalTime(arrivalTime);
 		mFlights.push_back(theFlight);
 	    return mFlights[mFlights.size() - 1];
 	}
@@ -50,9 +78,113 @@ namespace MyAirlineReservationApp {
 	}
 	void FlightManager::DisplayFlightsSchedule()const {
 		cout << "\n\t\t\t\t FLIGHT SCHEDULE" << endl << endl;
-		cout << left << setw(10) << "FLIGHT" << left << setw(10) << "SEATS" << left << setw(10) << "BOOKED" << endl;
+		cout << left << setw(10) << "FLIGHT" << left << setw(10) << "SEATS" << left << setw(10) << "BOOKED" << left << setw(10) << "DEPARTURE TIME"<<endl;
 		for (const auto& flight : mFlights) {
-			flight.display();
+			flight.displayFlightInformation();
 		}
 	}
+
+	bool FlightManager::ValidateIfSeatsAvailable(int FlightNumber, int noOfSeats)
+	{
+		for (auto& Flight : mFlights) {
+			if ((Flight.getFlightNo() == FlightNumber)&& (noOfSeats <=Flight.getNoOfReservableSeatsAvailable()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	Passenger & FlightManager::addPassengerDetails(int FlightNumber,int noOfSeats)
+	{
+		bool booked_result;
+		// TODO: insert return statement here
+		Passenger thePassenger;//constructor called and Flightnumber set
+		thePassenger.setmNoOfSeatstoBeReserved(noOfSeats);
+		cout << "Enter your Passport Number : " << endl;
+		int passportNo = Helper::getIntegerInput();
+		thePassenger.setmPassportNo(passportNo);
+		thePassenger.setmFlightNo(FlightNumber);
+		cout << "Enter your Full name : " << endl;
+		string passengerName = Helper::getString();
+		thePassenger.setmFullName(passengerName);
+		booked_result = BookPassengerFlight(FlightNumber, noOfSeats);
+		if (booked_result) {
+			mPassengers.push_back(thePassenger);
+		}
+		return mPassengers[mPassengers.size() - 1];
+	}
+	
+	void FlightManager::displayPassengerInformation(int Passportnumber) 
+	{
+		for (auto& thePassenger : mPassengers) {
+			if (thePassenger.getmPassportNo() == Passportnumber) {
+
+				cout << "\n\t\t\t\t PASSENGER INFO" << endl << endl;
+				cout << left << setw(15) << "NAME" << left << setw(15) << "PASSPORT_No" << left << setw(15) << endl;
+				cout << left << setw(10) << thePassenger.getmFullName() << left << setw(10) << thePassenger.getmPassportNo() << endl;
+				//cout << left << setw(15) << "NAME" << left << setw(15) << "SURNAME" << left << setw(15) << "PASSPORT_No" << left << setw(15) << "NATIONALLITY" << left << setw(15) << "ADDRESS" << left << setw(15) << "TELEPHONE" << endl;
+
+				//cout << left << setw(15) << i->name << left << setw(15) << i->surname << left << setw(15) << i->passportNo << left << setw(15) << i->nationallity << left << setw(15) << i->address << left << setw(15) << i->tel << endl << endl;
+				cout << "Your flight(s): ";
+
+
+				for (auto& flights : thePassenger.getmFlightNo()) {
+
+					cout << flights;
+				}
+				//// std::copy copies items using iterators.
+				////     The first two define the source iterators [begin,end). In this case from the list.
+				////     The last iterator defines the destination where the data will be copied too
+				//std::copy(std::begin(thePassenger.getmFlightNo()), std::end(thePassenger.getmFlightNo()),
+
+				//	// In this case the destination iterator is a fancy output iterator
+				//	// It treats a stream (in this case std::cout) as a place it can put values
+				//	// So you effectively copy stuff to the output stream.
+				//	std::ostream_iterator<int>(std::cout, " "));
+
+				////for (std::list<int>::iterator i2 = (thePassenger.getmFlightNo()).begin(); i2 != (thePassenger.getmFlightNo()).end(); ++i2) {
+
+				////	cout << *i2 << "  ";
+				////}
+
+				cout << endl;
+			}
+		}
+
+
+	}
+
+	void FlightManager::displayFlightInformation(int FlightNo)
+	{
+		for (auto& Flight : mFlights) {
+			if ((Flight.getFlightNo() == FlightNo)) {
+				cout << "\n\t\t\t\t FLIGHT SCHEDULE" << endl << endl;
+				cout << left << setw(10) << "FLIGHT" << left << setw(10) << "SEATS" << left << setw(10) << "BOOKED" << left << setw(10) << "DEPARTURE TIME" << endl;
+				Flight.displayFlightInformation();
+			}
+		}
+	}
+
+	bool FlightManager::BookPassengerFlight(int FlightNumber, int noOfSeats)
+	{
+		for (auto& Flight : mFlights) {
+			if ((Flight.getFlightNo() == FlightNumber) && (noOfSeats <= Flight.getNoOfReservableSeatsAvailable()))
+			{
+				int reduced_noOfSeats = (Flight.getNoOfReservableSeatsAvailable()) - noOfSeats;
+				Flight.setNoOfReservableSeatsAvailable(reduced_noOfSeats);
+				return true;
+			}
+			else
+			{
+				cout << "The required no ofseats are not available";
+				return false;
+			}
+
+		}
+		return false;
+	}
+		
+
 }

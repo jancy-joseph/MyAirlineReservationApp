@@ -1,6 +1,5 @@
-﻿  FlightDetails.cpp
-  FlightManager.cpp
-  FlightReservationManager.cpp
-  MyAirlineReservationApp.cpp
-  Generating Code...
+﻿  FlightResQueue.cpp
+c:\users\jancy\source\repos\myairlinereservation\myairlinereservation\helper.h(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\jancy\source\repos\myairlinereservation\myairlinereservation\helper.h(57): warning C4018: '<=': signed/unsigned mismatch
+c:\users\jancy\source\repos\myairlinereservation\myairlinereservation\helper.h(95): warning C4018: '<=': signed/unsigned mismatch
   MyAirlineReservation.vcxproj -> C:\Users\jancy\source\repos\MyAirlineReservation\Debug\MyAirlineReservation.exe

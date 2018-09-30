@@ -5,6 +5,8 @@
 using namespace std;
 
 namespace MyAirlineReservationApp {
+
+
 	int FlightDetails::getFlightNo() const {
 		//cout << "getFlightNo " << mFlightNo;
 
@@ -17,21 +19,21 @@ namespace MyAirlineReservationApp {
 
 	}
 
-	Time FlightDetails::getDepartingTime() const {
+	string FlightDetails::getDepartingTime() const {
 		return mDeparting_Time;
-	};
-	void FlightDetails::setDepartingTime(Time departingTime) {
+	}
+	void FlightDetails::setDepartingTime(string departingTime) {
 		mDeparting_Time = departingTime;
-	};
-/*
-	Time FlightDetails::getArrivalTime() const {
+	}
+
+	string FlightDetails::getArrivalTime() const {
 		return mArrival_time;
-	};
+	}
 	void FlightDetails::SetArrivalTime(string& arrivalTiime) {
 		mArrival_time = arrivalTiime;
-	};
+	}
 
-	const string& FlightDetails::getSourceAirportName() const {
+	/*const string& FlightDetails::getSourceAirportName() const {
 		return mSourceAirportName;
 	};
 	void FlightDetails::setSourceAirportName(std::string& sourceAirportName) {
@@ -88,9 +90,9 @@ namespace MyAirlineReservationApp {
 		//cout << "setTotalNoofSeats" << mTotalNoofSeats << endl;;
 
 	};
-	void FlightDetails::display() const {
+	void FlightDetails::displayFlightInformation() const {
 		
-		cout << left << setw(10) << getFlightNo() << left << setw(10) << getTotalNoofSeats()<< left << setw(10)<< getNoOfReservableSeatsAvailable()<< endl;
+		cout << left << setw(10) << getFlightNo() << left << setw(10) << getTotalNoofSeats()<< left << setw(10)<< getNoOfReservableSeatsAvailable() << left << setw(10) << getDepartingTime() << endl;
 
 		//cout << left << setw(10) << "FLIGHT" << left << setw(10) << "FROM" << left << setw(10) << "TO" << left << setw(10) << "LEAVE" << left << setw(10) << "ARRIVE" << left << setw(10) << "COST" << left << setw(10) << "TYPE" << left << setw(10) << "SEATS" << left << setw(10) << "BOOKED" << endl;
 		//cout << left << setw(10) << i->flightNo << left << setw(10) << i->from << left << setw(10) << i->to << left << setw(10) << l_time << left << setw(10) << a_time << left << setw(10) << i->cost << left << setw(10) << i->plane_type << left << setw(10) << i->seats << left << setw(10) << i->booked_seats << endl;

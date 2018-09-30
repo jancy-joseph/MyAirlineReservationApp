@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include "Helper.h"
+#include "FlightResQueue.h"
 using namespace std;
 
 namespace MyAirlineReservationApp {
@@ -13,16 +14,16 @@ namespace MyAirlineReservationApp {
 		
 			//string mFlightName;
 			//int mPrice;
-			Time mDeparting_Time;
-			/*
-			Time mArrival_time;
-			string mSourceAirportName;
+			string mDeparting_Time;
+			
+			string mArrival_time;
+			/*string mSourceAirportName;
 			string mDestinationAirportName;
 			int mNoOfStops;
 			*/
 			int mNooFSeatsAvailableToReserve;
 			int mTotalNoofSeats;
-		
+			
 		public:
 			//constructors:
 			FlightDetails() = default;
@@ -31,13 +32,13 @@ namespace MyAirlineReservationApp {
 			int getFlightNo() const;
 			void setFlightNo(int flightNo);
 			
-			Time getDepartingTime() const;
-			void setDepartingTime(Time departingTime);
-		/*
-			Time getArrivalTime() const;
+		    string getDepartingTime() const;
+			void setDepartingTime(string departingTime);
+		
+			string getArrivalTime() const;
 			void SetArrivalTime(string& arrivalTiime);
 		
-			const string& getSourceAirportName() const;
+			/*const string& getSourceAirportName() const;
 			void setSourceAirportName(string& sourceAirportName);
 			const string& getDestiantionAirportName() const;
 			void setDestiantionAirportName(string& destinationAirportName);
@@ -58,7 +59,7 @@ namespace MyAirlineReservationApp {
 			//static bool CheckforSeatsAvailble(int NoofSeatsToBeBooked);
 
 		
-			void display() const;
+			void displayFlightInformation() const;
 
 			/*
 

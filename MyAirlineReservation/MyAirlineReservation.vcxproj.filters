@@ -24,13 +24,13 @@
     <ClInclude Include="FlightDetails.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FlightReservationManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FlightManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlightResQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,13 +44,13 @@
     <ClCompile Include="MyAirlineReservationApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FlightReservationManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FlightDetails.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FlightManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlightResQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

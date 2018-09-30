@@ -5,6 +5,43 @@
 using namespace std;
 
 namespace MyAirlineReservationApp{
+	int Passenger::getmNoOfSeatstoBeReserved()
+	{
+		return 	mNoOfSeatstoBeReserved;
+	}
+	void Passenger::setmNoOfSeatstoBeReserved(int NoOfSeats)
+	{
+		mNoOfSeatstoBeReserved = NoOfSeats;
+		
+	}
+	int Passenger::getmPassportNo()
+	{
+		return mPassportNo;
+	}
+	void Passenger::setmPassportNo(int PassportNumber)
+	{
+		mPassportNo = PassportNumber;
+	}
+	 void Passenger::setmFlightNo(int FlightNum)
+	{
+		 FlightsPassengerBooked.push_back(FlightNum);
+		 mFlightNo = FlightNum;//this variable not needed just keeping to test will remove later
+	}
+	list<int> Passenger::getmFlightNo()
+	{
+		return FlightsPassengerBooked;
+	}
+
+	string Passenger::getmFullName()
+	{
+		return mFullName;
+	}
+
+	void Passenger::setmFullName(string FullName)
+	{ 
+		mFullName = FullName;
+	}
+	
 	//Intialize constructor
 	/*Passenger::Passenger(void) 
 	{
@@ -34,4 +71,5 @@ namespace MyAirlineReservationApp{
 		cout << "Passenger Name" << getPassengerFullname() << endl;
 		}
 		*/
+			
 }
