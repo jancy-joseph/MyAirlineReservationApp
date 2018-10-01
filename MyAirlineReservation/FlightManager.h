@@ -26,13 +26,14 @@ namespace MyAirlineReservationApp {
 		Passenger& addPassengerDetails(int FlightNumber,int noOfseats);
 		void displayPassengerInformation(int Passportnumber);
 		void displayFlightInformation(int FlightNo);
+		void displayPassengerTicketInformation(int Passportnumber);
 		bool BookPassengerFlight(int  FlightNumber, int noOfSeats);
 
 		//No destructor needed as we instructed compiler to create default constructor
 		//FlightManager();
 	private:
 		vector<FlightDetails> mFlights;
-		vector<FlightReservationQueue> mReservationQueues;
+		//vector<FlightReservationQueue> mReservationQueues;
 		vector<Passenger> mPassengers;
 		
 	};

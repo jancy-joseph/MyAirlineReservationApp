@@ -145,20 +145,27 @@ namespace MyAirlineReservationApp {
 				return number;
 			}
 			static string getString() {
-				string inputString;
+				string inputString,returnstring;
 				// get user's input
-			    getline(cin, inputString);
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				//getline(cin, inputString);
+				cin >> inputString;
 				/*
 				for (auto& mychar : inputString)
 					if (!isalpha((unsigned char)mychar)) {
 						cout << "Please insert a valid string!" << endl;
 						goto stringloop;
 					}*/
-				return inputString;
+				returnstring = inputString;
+				return returnstring;
 			}
 			static string getTime() {
 				string TimeString,appendstring,returnstring;
-				LoopTime:getline(cin, TimeString);
+				//cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				//LoopTime:getline(cin, TimeString);
+			LoopTime:   cin >> TimeString;
 				if (TimeString.length() != 5 || !checkValidTime(TimeString)) {
 					cout << "Please insert a valid boarding time (e.g. 07:30)! "<<endl;
 					goto LoopTime;
@@ -172,6 +179,31 @@ namespace MyAirlineReservationApp {
 				cout << "Appendstring" << appendstring << endl;
 				returnstring = TimeString + appendstring;
 				return returnstring;
+			}
+			static string getDate() {
+				string dateString;
+				//string date;
+				//string month;
+				//string year;
+				//std::cin >> date; // read the day
+				//if (std::cin.get() != '/') // make sure there is a slash between DD and MM
+				//{
+				//	std::cout << "expected /\n";
+				//	return 1;
+				//}
+				//std::cin >> month; // read the month
+				//if (std::cin.get() != '/') // make sure there is a slash between MM and YYYY
+				//{
+				//	std::cout << "expected /\n";
+				//	return 1;
+				//}
+				//std::cin >> year; // read the year
+				//dateString = date + "/" + month + "/" + year;
+				//std::cout << "input date: " << date << "/" << month << "/" << year << ":" << dateString << endl;
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				getline(cin, dateString);
+				return dateString;
 			}
 
 			//Keeping below code to remember my learnings

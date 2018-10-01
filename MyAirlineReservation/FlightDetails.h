@@ -12,15 +12,16 @@ namespace MyAirlineReservationApp {
 		
 			int mFlightNo;
 		
-			//string mFlightName;
-			//int mPrice;
+			string mFlightName;
+			int mPrice;
+			string mTraveldate;
 			string mDeparting_Time;
 			
 			string mArrival_time;
-			/*string mSourceAirportName;
+			string mSourceAirportName;
 			string mDestinationAirportName;
 			int mNoOfStops;
-			*/
+			
 			int mNooFSeatsAvailableToReserve;
 			int mTotalNoofSeats;
 			
@@ -29,32 +30,41 @@ namespace MyAirlineReservationApp {
 			FlightDetails() = default;
 		
 			//member functions
-			int getFlightNo() const;
+
+			const int getFlightNo() const;
 			void setFlightNo(int flightNo);
 			
-		    string getDepartingTime() const;
+
+
+		    const string getDepartingTime() const;
 			void setDepartingTime(string departingTime);
 		
-			string getArrivalTime() const;
-			void SetArrivalTime(string& arrivalTiime);
+			const string getArrivalTime() const ;
+			void SetArrivalTime(string arrivalTiime);
 		
-			/*const string& getSourceAirportName() const;
-			void setSourceAirportName(string& sourceAirportName);
-			const string& getDestiantionAirportName() const;
-			void setDestiantionAirportName(string& destinationAirportName);
+			const string getSourceAirportName() const;
+			void setSourceAirportName(string sourceAirportName);
+
+			const string getDestiantionAirportName() const;
+			void setDestiantionAirportName(string destinationAirportName);
 		
-			int getFlightCost() const;
+			const int getFlightCost() const;
 			void setFlightCost(int flightPrice);
-			const string& getFlightName() const;
-			void setFlightName(string& flightName);
+
+			const string getFlightName() const;
+			void setFlightName(string flightName);
+
+			const string getTraveldate() const;
+			void setTravelDate(string Traveldate);
+
 
 		
-			int getNoOfStops() const;
-			int setNoOfStops(int noOfStops);
-			*/
-			int getNoOfReservableSeatsAvailable() const;
+			const int getNoOfStops() const;
+			void setNoOfStops(int noOfStops);
+			
+			const int getNoOfReservableSeatsAvailable() const;
 			void setNoOfReservableSeatsAvailable(int nooFSeatsAvailable);
-			int getTotalNoofSeats() const;
+			const int getTotalNoofSeats() const;
 			void setTotalNoofSeats(int totalNoofSeats);
 			//static bool CheckforSeatsAvailble(int NoofSeatsToBeBooked);
 
